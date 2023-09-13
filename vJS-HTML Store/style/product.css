@@ -19,6 +19,11 @@
     padding: 5px;
     font-weight: 600;
     color: antiquewhite;
+    width: 12%;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-weight: 1000;
+    font-size: 17px;
 } 
 .navbar>button:nth-child(2){
     background-color: midnightblue;
@@ -36,7 +41,7 @@ body{
   width: 82%;
   justify-content: center; 
   align-items: center;
-  margin: 5% auto;
+  margin: 3.5% auto;
   padding: 5% 5%;
   box-sizing: border-box;
   box-shadow: grey 0px 5px 15px;
@@ -50,4 +55,52 @@ body{
 #productDiv>div>img{
 width: 150px;
 height: 150px;
+}
+
+.loader {
+    border: 80px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #0f3752; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  #filterParentDiv{
+    /* border: 1px solid black; */
+    margin-top:2%;
+    margin-left: 1.5%;
+  }
+  #filterParentDiv>select{
+    padding: 10px 25px;
+    font-weight: 1000;
+    font-size: 16px;
+    margin-right: 20px;
+    border: 1px solid rgb(216, 209, 209);
+    border-radius: 5px;
+  }
+  #filterParentDiv>select:focus{
+    outline: none;
+    border: 1px solid rgb(216, 209, 209);
+  }
+
+  select {
+    padding-right: 30px; 
+    appearance: none;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+}
+
+select::after {
+    content: '\25BC'; 
+    font-size: 14px; 
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
 }

@@ -22,7 +22,8 @@ function updateDOM() {
   parent.innerHTML = "";
 
   if (data.length === 0) {
-    parent.innerHTML = "<h1>No Data to Show</h1>";
+    parent.innerHTML = "<div></div>";
+    parent.firstChild.setAttribute("class" , "loader")
   } else {
     data.forEach(function (ele, index) {
       var div = document.createElement("div");
