@@ -22,16 +22,28 @@ function updateDOM() {
   parent.innerHTML = "";
 
   if (data.length === 0) {
-    parent.innerHTML = "<div></div>";
-    parent.firstChild.setAttribute("class" , "loader")
+    // parent.innerHTML = "<div></div>";
+    let div = document.createElement("div")
+    div.setAttribute("id" , "headingIfNull")
+    div.innerHTML = "<h1>No Items In Inventory .  .   .  </h1>"
+    parent.append(div)
+    // <div class="lds-hourglass"></div>
   } else {
     data.forEach(function (ele, index) {
       var div = document.createElement("div");
+      
       var name = document.createElement("p");
+      name.setAttribute("class" , "prodPgPoint")
+      name.addEventListener("click" , ()=>{productPageFunc(index)})
       var company = document.createElement("h3");
+      company.setAttribute("class" , "prodPgPoint")
+      company.addEventListener("click" , ()=>{productPageFunc(index)})
       var price = document.createElement("p");
+      
       var desc = document.createElement("p");
       var img = document.createElement("img");
+      img.setAttribute("class" , "prodPgPoint")
+      img.addEventListener("click" , ()=>{productPageFunc(index)})
       var btn = document.createElement("button");
       btn.innerHTML = "Delete";
       btn.addEventListener("click", function () {
@@ -60,6 +72,16 @@ function deleteFunc(index) {
   data.splice(index, 1);
   localStorage.setItem("data", JSON.stringify(data));
   updateDOM();
+}
+
+function productPageFunc(index){
+   // console.log(data)
+   var obj = data.filter((e,i)=>{return i == index})
+   
+   localStorage.setItem("productPageData" , JSON.stringify(obj[0]))
+
+   window.location = "productPage.html"
+  
 }
 
 function priceSortFunc(event) {
