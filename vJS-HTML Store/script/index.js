@@ -13,10 +13,13 @@ if(localStorage.getItem("data")){
     data = JSON.parse(localStorage.getItem("data"))
 }
 
+let count = JSON.parse(localStorage.getItem("count")) || 0
+
 function formSubmit(event){
  event.preventDefault()
  
  var target = event.target
+
  
  var name = target.querySelector("#name").value
  var url = target.querySelector("#imgSrc").value
@@ -25,6 +28,7 @@ function formSubmit(event){
  var company = target.querySelector("#company").value
 
  var obj = {
+    id:count++,
     name,
     url,
     price,

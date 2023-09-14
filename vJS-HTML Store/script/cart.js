@@ -8,6 +8,13 @@ var adminBtn = document.querySelector("#adminBtn").addEventListener("click" , fu
 var data = JSON.parse(localStorage.getItem("cartData")) || []
 var gpDiv = document.getElementById("cart-parent")
 
+function priceDetailsFunc(){
+    let totalPrice = data.reduce((acc,ele)=>{
+        return parseFloat(acc)+(ele.quantity*ele.price)
+    },0)
+    console.log(totalPrice)
+}
+priceDetailsFunc()
 function cartDOM(){
 
     gpDiv.innerHTML = ""

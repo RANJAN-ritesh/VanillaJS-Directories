@@ -33,17 +33,18 @@ function updateDOM() {
       var div = document.createElement("div");
       
       var name = document.createElement("p");
+      let id = ele.id
       name.setAttribute("class" , "prodPgPoint")
-      name.addEventListener("click" , ()=>{productPageFunc(index)})
+      name.addEventListener("click" , ()=>{productPageFunc(id)})
       var company = document.createElement("h3");
       company.setAttribute("class" , "prodPgPoint")
-      company.addEventListener("click" , ()=>{productPageFunc(index)})
+      company.addEventListener("click" , ()=>{productPageFunc(id)})
       var price = document.createElement("p");
       
       var desc = document.createElement("p");
       var img = document.createElement("img");
       img.setAttribute("class" , "prodPgPoint")
-      img.addEventListener("click" , ()=>{productPageFunc(index)})
+      img.addEventListener("click" , ()=>{productPageFunc(id)})
       var btn = document.createElement("button");
       btn.innerHTML = "Delete";
       btn.addEventListener("click", function () {
@@ -52,7 +53,7 @@ function updateDOM() {
 
       var cart = document.createElement("button");
       cart.innerHTML = "Add to Cart"
-      cart.addEventListener("click" , function(){addToCart(index)})
+      cart.addEventListener("click" , function(){addToCart(id)})
 
       company.innerHTML = `${ele.company}`;
       name.innerHTML = `Name : ${ele.name}`;
@@ -76,7 +77,7 @@ function deleteFunc(index) {
 
 function productPageFunc(index){
    // console.log(data)
-   var obj = data.filter((e,i)=>{return i == index})
+   var obj = data.filter((e,i)=>{return e.id == index})
    
    localStorage.setItem("productPageData" , JSON.stringify(obj[0]))
 
@@ -112,12 +113,34 @@ function alphaSortFunc(event){
 
 function addToCart(index){
   // console.log(data)
-  var obj = data.filter((e,i)=>{return i == index})
-  // console.log(obj)
   var check = JSON.parse(localStorage.getItem("cartData")) || []
-  // console.log(check)
-  check = [...check , ...obj]
-  localStorage.setItem("cartData" , JSON.stringify(check))
+ 
+
+  if(check>0){
+
+    var obj = data.filter((e,i)=>{return e.id == index})
+    console.log(obj)
+    if(obj.length > 0){
+      obj[0].quantity = +(obj[0].quantity)+1
+      localStorage.setItem("data" , JSON.stringify(data))
+      var cartArr = check.map((e,i)=>{
+        if(e.id == index){
+          e = obj
+        }
+      })
+         
+      
+      localStorage.setItem("cartData" , JSON.stringify(check))
+      updateDOM()
+    }
+
+  }
+else{
+    var check = JSON.parse(localStorage.getItem("cartData")) || []
+    // console.log(check)
+    check = [...check , ...obj]
+    localStorage.setItem("cartData" , JSON.stringify(check))
+  }
   
 }
 

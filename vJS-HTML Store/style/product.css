@@ -46,6 +46,16 @@ body{
   box-sizing: border-box;
   box-shadow: grey 0px 5px 15px;
 }
+@media screen and (max-width:850px){
+    #productDiv{
+        grid-template-columns:repeat(2,1fr)  ;
+    }    
+}
+@media screen and (max-width:530px){
+    #productDiv{
+        grid-template-columns:repeat(1,1fr)  ;
+    }    
+}
 #productDiv>div{
     border: 1px solid gainsboro;
     margin: auto;
