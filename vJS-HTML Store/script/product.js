@@ -112,35 +112,26 @@ function alphaSortFunc(event){
 }
 
 function addToCart(index){
-  // console.log(data)
-  var check = JSON.parse(localStorage.getItem("cartData")) || []
- 
+  var cart = JSON.parse(localStorage.getItem("cartData")) || [];
+  
+  let foundItem = cart.find((e) => e.id == index);
+  
+  if (foundItem) {
+    // If the item is found, increment the quantity
+    foundItem.quantity += 1;
+  } else {
+    // If the item is not found, add it to the cart
+    var obj = data.find((e) => e.id == index);
 
-  if(check>0){
-
-    var obj = data.filter((e,i)=>{return e.id == index})
-    console.log(obj)
-    if(obj.length > 0){
-      obj[0].quantity = +(obj[0].quantity)+1
-      localStorage.setItem("data" , JSON.stringify(data))
-      var cartArr = check.map((e,i)=>{
-        if(e.id == index){
-          e = obj
-        }
-      })
-         
-      
-      localStorage.setItem("cartData" , JSON.stringify(check))
-      updateDOM()
+    if (obj) {
+      cart.push(obj);
     }
+  }
 
-  }
-else{
-    var check = JSON.parse(localStorage.getItem("cartData")) || []
-    // console.log(check)
-    check = [...check , ...obj]
-    localStorage.setItem("cartData" , JSON.stringify(check))
-  }
+  localStorage.setItem("cartData", JSON.stringify(cart));
+  console.log(cart);
+
+ 
   
 }
 
