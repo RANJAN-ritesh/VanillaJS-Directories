@@ -7,15 +7,47 @@ var adminBtn = document.querySelector("#adminBtn").addEventListener("click" , fu
 
 
 var gpDiv = document.getElementById("cart-parent")
+var priceParent = document.getElementById("price-parent")
+
+var priceData = JSON.parse(localStorage.getItem("cartData")) || []
+
+let totalPrice = priceData.reduce((acc,ele)=>{
+    return parseFloat(acc)+(ele.quantity*ele.price)
+},0)
+
+let totalItems = priceData.reduce((acc,ele)=>{
+    return parseFloat(acc)+(ele.quantity)
+},0)
 
 function priceDetailsFunc(){
     var data = JSON.parse(localStorage.getItem("cartData")) || []
-    let totalPrice = data.reduce((acc,ele)=>{
-        return parseFloat(acc)+(ele.quantity*ele.price)
-    },0)
-    console.log(totalPrice)
+    
+
+    var priceChild1 = document.getElementById("price-child1")
+
+    priceChild1.innerHTML = `<h3>Total Items in Cart : <span>${totalItems}</span></h3>
+                              
+                              <h3>Total Price : <span>  ₹  ${totalPrice}</span></h3>`
+
+    
+     document.getElementById("voucherInputBtn").addEventListener("click" , discountFunc)                         
+    console.log(totalPrice , totalItems)
 }
 priceDetailsFunc()
+
+function discountFunc(){
+    let voucherInputData = document.getElementById("voucherInput").value
+    console.log(voucherInputData)
+    let persistOgPrice ;
+    if(voucherInputData == "season50"){
+        persistOgPrice = totalPrice
+        totalPrice = totalPrice-(totalPrice*0.5)
+        console.log("worked")
+        alert(`yay coupon season50 applied 🎆🎆`)
+    }
+    priceDetailsFunc()
+    totalPrice = persistOgPrice
+}
 
 function cartDOM(){
     var data = JSON.parse(localStorage.getItem("cartData")) || []
@@ -98,5 +130,3 @@ function deleteCartElement(id){
 }
 
 cartDOM()
-
-console.log(data)
