@@ -39,6 +39,7 @@ function formSubmit(event){
  
 data.push(obj)
 
+localStorage.setItem("count" , JSON.stringify(count))
 localStorage.setItem("data" , JSON.stringify(data))
 
 

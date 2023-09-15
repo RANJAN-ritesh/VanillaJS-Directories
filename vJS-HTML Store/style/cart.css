@@ -52,6 +52,23 @@ body{
     box-shadow: rgba(0, 0, 0, 0.068) 0px 5px 8px 10px;
     
 }
+#counterDeleteDiv{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    width: 100px;
+    justify-content: center;
+}
+#counterDeleteDiv>div{
+    margin: auto;
+    margin-bottom: 40px ;
+}
+#counterDeleteDiv>button{
+    width: 60px;
+    padding: 5px;
+    margin: auto;
+    cursor: pointer;
+}
 #cart-parent>div>div{
     margin-left: 20px;
 }

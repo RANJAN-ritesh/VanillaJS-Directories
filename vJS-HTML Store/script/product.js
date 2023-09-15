@@ -117,10 +117,10 @@ function addToCart(index){
   let foundItem = cart.find((e) => e.id == index);
   
   if (foundItem) {
-    // If the item is found, increment the quantity
+   
     foundItem.quantity += 1;
   } else {
-    // If the item is not found, add it to the cart
+    
     var obj = data.find((e) => e.id == index);
 
     if (obj) {
