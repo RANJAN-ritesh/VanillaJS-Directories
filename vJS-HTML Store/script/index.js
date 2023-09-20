@@ -27,16 +27,29 @@ function formSubmit(event){
  var desc = target.querySelector("#desc").value
  var company = target.querySelector("#company").value
 
- var obj = {
-    id:count++,
-    name,
-    url,
-    price,
-    desc,
-    company,
-    quantity:1
+//  var obj = {
+//     id:count++,
+//     name,
+//     url,
+//     price,
+//     desc,
+//     company,
+//     quantity:1
+//  }
+
+ function createObj( name , url , price , desc , company ){
+    this.id = count++
+    this.name = name
+    this.url = url
+    this.price = price
+    this.desc = desc
+    this.company = company
+    this.quantity = 1
  }
+
+ let obj = new createObj(name,url,price,desc,company)
  
+//  console.log(obj)
 data.push(obj)
 
 localStorage.setItem("count" , JSON.stringify(count))
